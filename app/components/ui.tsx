@@ -12,7 +12,9 @@ import {
   latest,
   mostRead,
   shortDate,
+  slugify,
 } from '@/lib/content';
+import { CONTACT_EMAIL, JsonLd, breadcrumbJsonLd } from '@/lib/seo';
 import { NewsletterForm } from './client';
 
 export const GOLD = '#F2A900';
@@ -294,7 +296,9 @@ export function Footer() {
       </div>
       <div style={{ borderTop: '1px solid #2a2a2a', padding: '16px 28px', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: 10, fontSize: 11, color: '#8a8a8a', lineHeight: 1.5 }}>
         <span>Editor-chefe: Carlos Eduardo Nunes · Redação: Rua Coronel Peixoto, 112, Delmiro Gouveia/AL</span>
-        <span>© {new Date().getFullYear()} Sertão em Pauta. Todos os direitos reservados.</span>
+        <span>
+          <Link href="/privacidade" style={{ color: '#c9c9c9' }}>Política de Privacidade</Link> · <Link href="/termos" style={{ color: '#c9c9c9' }}>Termos de Uso</Link> · © {new Date().getFullYear()} Sertão em Pauta. Todos os direitos reservados.
+        </span>
       </div>
     </footer>
   );
@@ -337,6 +341,32 @@ export function ColumnistsRow() {
           </Link>
         );
       })}
+    </div>
+  );
+}
+
+/* ----------------------------------------------------------------- legal */
+
+export type LegalSection = { h: string; p: string[] };
+
+export function LegalPage({ title, desc, path, updated, sections }: { title: string; desc: string; path: string; updated: string; sections: LegalSection[] }) {
+  return (
+    <div style={{ padding: 'var(--page-pad)' }}>
+      <JsonLd data={breadcrumbJsonLd([{ name: title, path }])} />
+      <Breadcrumb trail={[{ name: title }]} />
+      <ListingHeader title={title} desc={desc} />
+      <article style={{ maxWidth: 720, fontSize: 16, lineHeight: 1.7, color: '#2a2a2a', paddingTop: 20 }}>
+        <p style={{ fontSize: 13, color: '#777' }}>Última atualização: {updated}</p>
+        {sections.map((s, i) => (
+          <section key={s.h} id={slugify(s.h)} style={{ scrollMarginTop: 120 }}>
+            <h2 style={{ fontFamily: 'var(--font-archivo), sans-serif', fontWeight: 800, fontSize: 22, letterSpacing: '-.015em', margin: '32px 0 10px' }}>{i + 1}. {s.h}</h2>
+            {s.p.map((t) => <p key={t} style={{ margin: '0 0 12px' }}>{t}</p>)}
+          </section>
+        ))}
+        <p style={{ marginTop: 32, paddingTop: 20, borderTop: `1px solid ${RULE}` }}>
+          Dúvidas ou solicitações: <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: '#B07800', fontWeight: 700 }}>{CONTACT_EMAIL}</a> · Rua Coronel Peixoto, 112, Delmiro Gouveia/AL.
+        </p>
+      </article>
     </div>
   );
 }

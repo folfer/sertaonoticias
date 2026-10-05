@@ -14,6 +14,7 @@ export const SITE_TAGLINE = 'Informação que chega mais longe';
 export const SITE_DESCRIPTION =
   'Jornalismo regional independente do Sertão de Alagoas. Notícias de Delmiro Gouveia, Piranhas, Pão de Açúcar, Água Branca e todo o Alto Sertão alagoano.';
 export const LOCALE = 'pt_BR';
+export const CONTACT_EMAIL = 'contato@sertaoempauta.com.br';
 
 /**
  * Na Vercel, VERCEL_PROJECT_PRODUCTION_URL já vem preenchida no build de produção com o domínio
