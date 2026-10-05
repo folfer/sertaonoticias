@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
 /* ------------------------------------------------------------------- toast */
@@ -166,7 +167,7 @@ export function CookieConsent() {
   return (
     <div role="dialog" aria-label="Cookies" style={{ position: 'sticky', bottom: 0, background: '#fff', borderTop: '3px solid #F2A900', boxShadow: '0 -4px 20px rgba(0,0,0,.08)', padding: '14px 20px', display: 'flex', flexWrap: 'wrap', gap: '12px 20px', alignItems: 'center', justifyContent: 'space-between', zIndex: 30 }}>
       <span style={{ fontSize: 13, lineHeight: 1.5, color: '#3a3a3a', flex: '1 1 320px' }}>
-        Usamos cookies para medir audiência e melhorar o site. Analytics só é carregado após o seu aceite, conforme a LGPD.
+        Usamos cookies para medir audiência e melhorar o site. Analytics só é carregado após o seu aceite, conforme a LGPD. <Link href="/privacidade" style={{ color: '#B07800', fontWeight: 700 }}>Política de Privacidade</Link>
       </span>
       <div style={{ display: 'flex', gap: 8 }}>
         <button onClick={() => decide('essential')} style={{ height: 40, padding: '0 16px', border: '1px solid #cfcac0', background: '#fff', borderRadius: 4, fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>Só essenciais</button>

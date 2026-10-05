@@ -10,6 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absolute('/'), lastModified: newest, changeFrequency: 'hourly', priority: 1 },
     { url: absolute('/ultimas'), lastModified: newest, changeFrequency: 'hourly', priority: 0.9 },
     { url: absolute('/opiniao'), lastModified: newest, changeFrequency: 'daily', priority: 0.7 },
+    { url: absolute('/privacidade'), changeFrequency: 'yearly', priority: 0.2 },
+    { url: absolute('/termos'), changeFrequency: 'yearly', priority: 0.2 },
 
     ...CATS.map((c) => ({
       url: absolute(`/${c.slug}`),
